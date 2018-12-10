@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">IHM-app</string>
+    <string name="activity_main_button_next">Suivant</string>
+    <string name="activity_main_textView_name">Aucun nom entré pour le moment!</string>
+    <string name="activity_form_button_back">Précédent</string>
+    <string name="activity_form_plainText_enterName">Nom</string>
+</resources>
