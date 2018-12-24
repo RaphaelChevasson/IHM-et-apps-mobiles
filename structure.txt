@@ -1,0 +1,9 @@
+Data manager: rétention (froide) de données
+	-> (transformation de données)
+		-> Form Activity [xml]
+			<=> ML
+		-> Main Activity [xml]
+			<=> (Listen Name) Adapter
+				-> (Listen Item) View Holder [xml] -> main actimity
+				
+	

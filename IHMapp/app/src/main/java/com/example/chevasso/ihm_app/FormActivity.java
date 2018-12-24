@@ -1,9 +1,9 @@
 package com.example.chevasso.ihm_app;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -31,9 +31,10 @@ public class FormActivity extends AppCompatActivity {
 
     private void saveForm() {
         String name = editTextName.getText().toString();
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra(KEY_USERNAME, name);
-        setResult(RESULT_OK, resultIntent);
+
+        if (name.isEmpty()) {
+            DataManager.getInstance().addName(name);
+        }
         finish();
     }
 

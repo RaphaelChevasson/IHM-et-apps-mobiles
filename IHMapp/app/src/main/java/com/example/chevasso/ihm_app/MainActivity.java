@@ -1,20 +1,32 @@
 package com.example.chevasso.ihm_app;
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.List;
+
+/**
+ *
+ */
+public class MainActivity extends AppCompatActivity implements NameItemListener {
 
     public final static int CODE_USERNAME = 123;
 
-    private TextView textViewName;
     private Button buttonNext;
+    private RecyclerView reciclerViewNames;
+
+    ListNameAdapter listNameAdapter;
+
     final MainActivity mainActivity = this;
+
+    public MainActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,34 +36,41 @@ public class MainActivity extends AppCompatActivity {
         initViews();
     }
 
-    private void initViews() {
-        textViewName = findViewById(R.id.activity_main_textView_name);
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        List<String> nameList = DataManager.getInstance().getNameList();
+    }
+
+    private void initViews() {
         buttonNext = findViewById(R.id.activity_main_button_next);
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mainActivity, FormActivity.class);
-                startActivityForResult(intent, CODE_USERNAME);
+                displayForm();
             }
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == CODE_USERNAME) {
-            if (resultCode == RESULT_OK && data.getExtras() != null) {
-                displayForm(data);
-            }
-            else {
-                // handle errors
-            }
-        }
+    private void displayForm() {
+        Intent intent = new Intent(this, FormActivity.class);
+        startActivity(intent);
+
     }
 
-    private void displayForm(Intent data) {
-        String name = data.getStringExtra(FormActivity.KEY_USERNAME);
-        textViewName.setText(name);
+    private void initList() {
+        final LinearLayoutManager linearLayoutManager =
+                new LinearLayoutManager(this);
+
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        reciclerViewNames.setAdapter(listNameAdapter);
+        reciclerViewNames.setLayoutManager(linearLayoutManager);
+    }
+
+    @Override
+    public void clickOnItem(String name) {
+        Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">HCI-app</string>
     <string name="activity_main_button_next">Next</string>
-    <string name="activity_main_textView_name">No name entered yet!</string>
+    <string name="activity_main_textView_name">No nameList entered yet!</string>
     <string name="activity_form_button_back">Back</string>
     <string name="activity_form_plainText_enterName">Name</string>
 </resources>
